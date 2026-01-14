@@ -1,0 +1,121 @@
+:root {
+    --bg-color: #f0f2f5;
+    --card-color: #ffffffdd;
+    --text-color: #333;
+    --btn-color-start: #28a745;
+    --btn-color-pause: #ffc107;
+    --btn-color-reset: #dc3545;
+    --btn-color-lap: #17a2b8;
+}
+
+body.dark {
+    --bg-color: #121212;
+    --card-color: #1e1e1e;
+    --text-color: #fff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.5s;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.stopwatch-container {
+    background-color: var(--card-color);
+    padding: 30px 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: 90%;
+    transition: background 0.3s, color 0.3s;
+    color: var(--text-color);
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+#time {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    transition: transform 0.2s;
+}
+
+.running #time {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); color: var(--text-color);}
+    50% { transform: scale(1.05); color: #ff6f61; }
+    100% { transform: scale(1); color: var(--text-color);}
+}
+
+.buttons button, .extra-buttons button {
+    margin: 5px;
+    padding: 12px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.3s;
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.start { background-color: var(--btn-color-start); }
+.pause { background-color: var(--btn-color-pause); color:#333; }
+.reset { background-color: var(--btn-color-reset); }
+.lap { background-color: var(--btn-color-lap); }
+.download { background-color: #6f42c1; }
+.theme { background-color: #343a40; color:white; }
+
+#laps {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#laps li {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    font-family: monospace;
+    display: flex;
+    justify-content: space-between;
+    transition: background 0.3s;
+}
+
+body.dark #laps li { background-color: #2a2a2a; }
+#laps li:nth-child(odd) { opacity: 0.9; }
+
+@media (max-width: 500px) {
+    #time { font-size: 36px; }
+    .btn { font-size: 14px; padding: 10px 16px; }
+}
